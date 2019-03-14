@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\User;
 // use Illuminate\Http\Request;
 use App\Http\Requests\UserRegisterRequest;
+use App\Http\Resources\User as UserResource;
 use PharIo\Manifest\Email;
 
 class AuthController extends Controller {
@@ -14,6 +15,6 @@ class AuthController extends Controller {
             'password' => bcrypt($request->password)
         ]);
 
-        return $user;
+        return new UserResource($user);
     }
 }
